@@ -13,17 +13,19 @@ type Server struct {
 	HttpStand *http.Server
 }
 
-// func (s Server) Run(w) {
+func (s *Server) Run() {
+	s.Logger.Printf("Server is start")
+	s.HttpStand.ListenAndServe()
+}
 
-// }
-
-func ServerGo(logger *log.Logger) error {
+func ServerGo(logger *log.Logger) *Server {
 	// logger := log.New(os.Stdout, "http: ", log.LstdFlags)
 	// logger.Printf("Server is start")
 
 	router := http.NewServeMux()
 	router.HandleFunc("/", handlers.MainHandle)
 
+	// Создайте экземпляр структуры http.Server
 	srv := &http.Server{
 		Addr:         ":8080",
 		Handler:      router,
@@ -32,5 +34,9 @@ func ServerGo(logger *log.Logger) error {
 		WriteTimeout: 10 * time.Second,
 		IdleTimeout:  15 * time.Second,
 	}
-	return srv.ListenAndServe()
+	// Верните ссылку на ваш сервер.
+	return &Server{
+		HttpStand: srv,
+		Logger:    logger,
+	}
 }
