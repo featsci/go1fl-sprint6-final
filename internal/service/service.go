@@ -2,23 +2,16 @@ package service
 
 import (
 	"fmt"
-	"os"
 	"strings"
 
 	"github.com/featsci/go1fl-sprint6-final/pkg/morse"
 )
 
-func ServiceMorse(x string) (string, error) {
-	data, err := os.ReadFile(x)
-	if err != nil {
-		// if errors.Is(err, os.ErrNotExist) {
-		// 	return "", nil
-		// }
-		return "", err
-	}
+func ServiceMorse(data string) (string, error) {
+
 	isMorse := true
 	t := ""
-	// fmt.Println(string(data))
+	fmt.Println(string(data))
 	for _, v := range data {
 		// fmt.Println(string(v))
 		if strings.Contains(string(v), ".") || strings.Contains(string(v), "-") || strings.Contains(string(v), " ") {
@@ -36,9 +29,6 @@ func ServiceMorse(x string) (string, error) {
 	}
 
 	fmt.Println(t)
-	// if strings.ContainsRune(data) {
-	// 	fmt.Println("Yes - .")
-	// }
 
 	return t, nil
 }
