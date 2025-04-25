@@ -22,8 +22,9 @@ func main() {
 	// service.ServiceMorse("test12")
 
 	// запускаем сервер
-	if err := server.ServerGo(logger); err != nil {
-		fmt.Printf("Ошибка при запуске сервера: %s", err.HttpStand.ListenAndServe().Error())
+	srv := server.ServerGo(logger)
+	if err := srv.RunSrv(); err != nil {
+		fmt.Printf("Ошибка при запуске сервера: %s", err.Error())
 		return
 	}
 

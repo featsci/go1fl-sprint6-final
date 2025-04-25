@@ -13,9 +13,10 @@ type Server struct {
 	HttpStand *http.Server
 }
 
-func (s *Server) Run() {
+func (s *Server) RunSrv() error {
 	s.Logger.Printf("Server is start")
-	s.HttpStand.ListenAndServe()
+	return s.HttpStand.ListenAndServe()
+
 }
 
 func ServerGo(logger *log.Logger) *Server {
@@ -24,6 +25,7 @@ func ServerGo(logger *log.Logger) *Server {
 
 	router := http.NewServeMux()
 	router.HandleFunc("/", handlers.MainHandle)
+	router.HandleFunc("/upload", handlers.UploadHandle)
 
 	// Создайте экземпляр структуры http.Server
 	srv := &http.Server{
