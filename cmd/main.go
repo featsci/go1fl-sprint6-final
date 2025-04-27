@@ -10,30 +10,10 @@ import (
 
 func main() {
 	logger := log.New(os.Stdout, "http: ", log.LstdFlags)
-	// logger.Printf("Server is start")
 
-	// t := service.ServiceMorse("Привет")
-
-	// fmt.Println(t)
-
-	// функция для вывода каждой строки
-
-	// читаем файл построчно
-	// service.ServiceMorse("test12")
-
-	// запускаем сервер
 	srv := server.ServerGo(logger)
 	if err := srv.RunSrv(); err != nil {
 		fmt.Printf("Ошибка при запуске сервера: %s", err.Error())
 		return
 	}
-
-	// mux := http.NewServeMux()
-	// // mux.HandleFunc("/time", handleTime)
-	// // mux.HandleFunc("/", handleMain)
-
-	// err := http.ListenAndServe(":8080", mux)
-	// if err != nil {
-	// 	panic(err)
-	// }
 }

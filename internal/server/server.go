@@ -20,9 +20,6 @@ func (s *Server) RunSrv() error {
 }
 
 func ServerGo(logger *log.Logger) *Server {
-	// logger := log.New(os.Stdout, "http: ", log.LstdFlags)
-	// logger.Printf("Server is start")
-
 	router := http.NewServeMux()
 	router.HandleFunc("/", handlers.MainHandle)
 	router.HandleFunc("/upload", handlers.UploadHandle)

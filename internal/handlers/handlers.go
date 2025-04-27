@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/featsci/go1fl-sprint6-final/internal/service"
 )
@@ -50,6 +51,15 @@ func UploadHandle(w http.ResponseWriter, req *http.Request) {
 		log.Fatal(err)
 	}
 
-	service.ServiceMorse(string(data))
+	convData, err := service.ServiceMorse(string(data))
+	if err != nil {
+		fmt.Println("error", err)
+		return
+	}
+
+	// записываем данные в файл
+	os.WriteFile(time.Now().UTC().String(), []byte(fmt.Sprint(convData)), 0755)
+
+	fmt.Fprintf(w, "%s", string(convData))
 
 }

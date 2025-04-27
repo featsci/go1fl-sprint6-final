@@ -1,7 +1,6 @@
 package service
 
 import (
-	"fmt"
 	"strings"
 
 	"github.com/featsci/go1fl-sprint6-final/pkg/morse"
@@ -11,7 +10,7 @@ func ServiceMorse(data string) (string, error) {
 
 	isMorse := true
 	t := ""
-	fmt.Println(string(data))
+	// fmt.Println(string(data))
 	for _, v := range data {
 		// fmt.Println(string(v))
 		if strings.Contains(string(v), ".") || strings.Contains(string(v), "-") || strings.Contains(string(v), " ") {
@@ -28,7 +27,7 @@ func ServiceMorse(data string) (string, error) {
 		t = morse.ToMorse(string(data))
 	}
 
-	fmt.Println(t)
+	// fmt.Println(t)
 
 	return t, nil
 }
